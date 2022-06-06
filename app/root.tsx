@@ -20,8 +20,8 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <header className="container mx-auto">
-          <nav className="py-2 flex justify-between">
+        <header className="sticky top-0 bg-white">
+          <nav className="container mx-auto py-2 flex justify-between">
             <span>
               <Link
                   to="/"
