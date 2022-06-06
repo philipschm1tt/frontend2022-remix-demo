@@ -65,7 +65,8 @@ export default function PageTwo() {
     const newCard = (isCreating && transition.submission) ?
         Object.fromEntries(transition.submission.formData) : null;
 
-    const inputClassName = `w-full rounded border border-gray-500 px-2 py-1 text-lg`;
+    const inputClassName = `mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`;
+
 
     return (
         <main>
@@ -138,6 +139,8 @@ export default function PageTwo() {
                                 <input
                                     type="checkbox"
                                     name="delay"
+                                    className="ml-2 rounded border-gray-300 text-indigo-600 shadow-sm
+                                    focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
                                 />
                             </label>
                         </p>
