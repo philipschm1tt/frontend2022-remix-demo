@@ -21,13 +21,11 @@ export const loader: LoaderFunction = async ({context}) => {
 };
 
 export const action: ActionFunction = async ({context, request}) => {
-    // TODO: artificial delay – remove me
-    await new Promise((res) => setTimeout(res, 1000));
-
     const formData = await request.formData();
 
     const title = formData.get("title");
     const body = formData.get("body");
+    const delay = formData.get("delay");
 
     const errors: ActionData = {
         title: title ? null : "Title is required",
@@ -50,6 +48,10 @@ export const action: ActionFunction = async ({context, request}) => {
     );
 
     await addCard(context, {title, body});
+
+    if (delay) {
+        await new Promise((res) => setTimeout(res, 5000));
+    }
 
     return redirect("/page-two");
 };
@@ -127,6 +129,15 @@ export default function PageTwo() {
                                     type="text"
                                     name="body"
                                     className={inputClassName}
+                                />
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                Artificially delay form submit:{" "}
+                                <input
+                                    type="checkbox"
+                                    name="delay"
                                 />
                             </label>
                         </p>
