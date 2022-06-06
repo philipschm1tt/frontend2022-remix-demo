@@ -60,6 +60,8 @@ export default function PageTwo() {
 
     const transition = useTransition();
     const isCreating = Boolean(transition.submission);
+    const newCard = (isCreating && transition.submission) ?
+        Object.fromEntries(transition.submission.formData) : null;
 
     const inputClassName = `w-full rounded border border-gray-500 px-2 py-1 text-lg`;
 
@@ -87,6 +89,14 @@ export default function PageTwo() {
                                 </article>
                             </li>
                         ))}
+                        {isCreating && newCard &&
+                        <li>
+                            <article>
+                                <h3>{newCard.title}</h3>
+                                <p>{newCard.body}</p>
+                            </article>
+                        </li>
+                        }
                     </ul>
                 </div>
             </section>
