@@ -1,5 +1,5 @@
 import {ActionFunction, json, LoaderFunction, redirect} from "@remix-run/cloudflare";
-import {useLoaderData, Form, useActionData} from "@remix-run/react";
+import {useLoaderData, Form, useActionData, useTransition} from "@remix-run/react";
 import {addCard, Card, getCards} from "~/data/cards.server";
 import invariant from "tiny-invariant";
 
@@ -21,6 +21,9 @@ export const loader: LoaderFunction = async ({context}) => {
 };
 
 export const action: ActionFunction = async ({context, request}) => {
+    // TODO: artificial delay – remove me
+    await new Promise((res) => setTimeout(res, 1000));
+
     const formData = await request.formData();
 
     const title = formData.get("title");
@@ -54,6 +57,9 @@ export const action: ActionFunction = async ({context, request}) => {
 export default function PageTwo() {
     const {cards} = useLoaderData();
     const errors = useActionData();
+
+    const transition = useTransition();
+    const isCreating = Boolean(transition.submission);
 
     const inputClassName = `w-full rounded border border-gray-500 px-2 py-1 text-lg`;
 
@@ -118,8 +124,9 @@ export default function PageTwo() {
                             <button
                                 type="submit"
                                 className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300"
+                                disabled={isCreating}
                             >
-                                Create Card
+                                {isCreating ? "Creating..." : "Create Card"}
                             </button>
                         </p>
                     </Form>
