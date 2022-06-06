@@ -6,7 +6,7 @@
     "build:css": "tailwindcss -m -i styles/app.css -o app/styles/tailwind.css",
     "dev:css": "tailwindcss -w -i styles/app.css -o app/styles/tailwind.css",
     "dev:remix": "remix watch",
-    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public",
+    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public --kv FRONTEND2022_DEMO",
     "dev": "npm run build:css && remix build && run-p dev:*",
     "start": "cross-env NODE_ENV=production npm run dev:wrangler"
   },

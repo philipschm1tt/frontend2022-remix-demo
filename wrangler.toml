@@ -1,0 +1,7 @@
+name = "remix-demo"
+type = "javascript"
+workers_dev = true
+
+kv_namespaces = [
+    { binding = "FRONTEND2022_DEMO", id = "ca8894c9211e42c5a8d77f2fba97bb7f" }
+]

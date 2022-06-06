@@ -1,33 +1,19 @@
 import {json, LoaderFunction} from "@remix-run/cloudflare";
-import { useLoaderData } from "@remix-run/react";
-
-type Card = {
-    title: string;
-    body: string;
-};
+import {useLoaderData} from "@remix-run/react";
+import {Card, getCards} from "~/data/cards.server";
 
 type LoaderData = {
     cards: Array<Card>;
 };
 
-export const loader: LoaderFunction = async () => {
-    return json<LoaderData>({
-        cards: [
-            {
-                title: "First Card",
-                body: "Look! A bit of data!"
-            },
-            {
-                title: "Second Card",
-                body: "More data to look at."
-            },
-        ],
-    });
+export const loader: LoaderFunction = async ({context}) => {
+    const cards = await getCards(context);
+
+    return json<LoaderData>({cards});
 };
 
 export default function PageTwo() {
-    const { cards } = useLoaderData();
-    console.log(cards);
+    const {cards} = useLoaderData();
 
     return (
         <main>
