@@ -2,6 +2,7 @@ import {ActionFunction, json, LoaderFunction, redirect} from "@remix-run/cloudfl
 import {useLoaderData, Form, useActionData, useTransition} from "@remix-run/react";
 import {addCard, Card, getCards} from "~/data/cards.server";
 import invariant from "tiny-invariant";
+import {useEffect, useRef} from "react";
 
 type LoaderData = {
     cards: Array<Card>;
@@ -65,8 +66,16 @@ export default function PageTwo() {
     const newCard = (isCreating && transition.submission) ?
         Object.fromEntries(transition.submission.formData) : null;
 
+    let formRef = useRef<HTMLFormElement>(null);
+    let titleRef = useRef<HTMLInputElement>(null);
     const inputClassName = `mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`;
 
+    useEffect(() => {
+        if (!isCreating) {
+            formRef.current?.reset();
+            titleRef.current?.focus();
+        }
+    }, [isCreating])
 
     return (
         <main>
@@ -106,7 +115,7 @@ export default function PageTwo() {
             <section className="container mx-auto py-10">
                 <div className="prose prose-lg">
                     <h2 className="mb-4">Create Card</h2>
-                    <Form method="post">
+                    <Form ref={formRef} method="post">
                         <p>
                             <label>
                                 Card Title:{" "}
@@ -116,6 +125,7 @@ export default function PageTwo() {
                                 <input
                                     type="text"
                                     name="title"
+                                    ref={titleRef}
                                     className={inputClassName}
                                 />
                             </label>
