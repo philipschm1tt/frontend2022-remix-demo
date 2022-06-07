@@ -79,8 +79,8 @@ export default function PageTwo() {
 
     return (
         <main>
-            <section className="py-20 bg-blue-900">
-                <div className="container mx-auto">
+            <section className="py-20 px-4 bg-blue-900">
+                <div className="container mx-auto px-4">
                     <h1 className="text-4xl font-bold mb-2 text-white">
                         Page Two
                     </h1>
@@ -90,30 +90,38 @@ export default function PageTwo() {
                 </div>
             </section>
             <div className="container container mx-auto lg:grid lg:grid-cols-[3fr_1fr] lg:gap-4">
-                <section className="py-10">
+                <section className="py-10 px-4">
                     <div className="prose prose-lg">
                         <h2 className="mb-4">Some Cards</h2>
-                        <ul>
-                            {cards.map((card: Card) => (
-                                <li key={card.title}>
-                                    <article>
-                                        <h3>{card.title}</h3>
-                                        <p>{card.body}</p>
-                                    </article>
-                                </li>
-                            ))}
-                            {isCreating && newCard &&
-                            <li>
+                    </div>
+                    <ul className="list-none flex flex-wrap gap-4">
+                        {cards.map((card: Card) => (
+                            <li key={card.title}>
                                 <article>
-                                    <h3>{newCard.title}</h3>
-                                    <p>{newCard.body}</p>
+                                    <div className="flex justify-center">
+                                        <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                                            <h3 className="text-gray-900 text-xl leading-tight font-medium mb-2">{card.title}</h3>
+                                            <p className="text-gray-700 text-base">{card.body}</p>
+                                        </div>
+                                    </div>
                                 </article>
                             </li>
-                            }
-                        </ul>
-                    </div>
+                        ))}
+                        {isCreating && newCard &&
+                        <li>
+                            <article>
+                                <div className="flex justify-center">
+                                    <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                                        <h3 className="text-gray-900 text-xl leading-tight font-medium mb-2">{newCard.title}</h3>
+                                        <p className="text-gray-700 text-base">{newCard.body}</p>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                        }
+                    </ul>
                 </section>
-                <section className="py-10 px-4 bg-blue-200">
+                <section className="py-10 px-4 bg-blue-200 shadow-lg">
                     <div className="sticky top-16 prose prose-lg">
                         <h2 className="mb-4">Create Card</h2>
                         <Form ref={formRef} method="post">
@@ -155,10 +163,10 @@ export default function PageTwo() {
                                     />
                                 </label>
                             </p>
-                            <p className="text-right">
+                            <p>
                                 <button
                                     type="submit"
-                                    className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300"
+                                    className="rounded bg-blue-500 py-2 px-4 text-white shadow-lg hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300"
                                     disabled={isCreating}
                                 >
                                     {isCreating ? "Creating..." : "Create Card"}

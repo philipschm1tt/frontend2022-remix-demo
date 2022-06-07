@@ -19,15 +19,15 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
-        <header className="sticky top-0 bg-white">
+      <body className="min-h-screen bg-blue-50">
+        <header className="sticky top-0 bg-white shadow-xl z-10">
           <nav className="container mx-auto py-2 flex justify-between">
             <span>
               <Link
                   to="/"
-                  className="text-3xl font-bold"
+                  className="text-3xl font-bold px-4 inline-block"
               >
-              Remix Demo
+                Remix Demo
             </Link>
             </span>
             <ul className="flex flex-row">
