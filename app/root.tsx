@@ -42,7 +42,7 @@ export default function App() {
               <li className="flex flex-col justify-end">
                 <Link
                     to="/page-two"
-                    className="pl-4 uppercase tracking-wider font-bold hover:text-gray-400"
+                    className="px-4 uppercase tracking-wider font-bold hover:text-gray-400"
                 >
                   Page Two
                 </Link>

@@ -89,83 +89,85 @@ export default function PageTwo() {
                     </p>
                 </div>
             </section>
-            <section className="container mx-auto py-10">
-                <div className="prose prose-lg">
-                    <h2 className="mb-4">Some Cards</h2>
-                    <ul>
-                        {cards.map((card: Card) => (
-                            <li key={card.title}>
+            <div className="container container mx-auto lg:grid lg:grid-cols-[3fr_1fr] lg:gap-4">
+                <section className="py-10">
+                    <div className="prose prose-lg">
+                        <h2 className="mb-4">Some Cards</h2>
+                        <ul>
+                            {cards.map((card: Card) => (
+                                <li key={card.title}>
+                                    <article>
+                                        <h3>{card.title}</h3>
+                                        <p>{card.body}</p>
+                                    </article>
+                                </li>
+                            ))}
+                            {isCreating && newCard &&
+                            <li>
                                 <article>
-                                    <h3>{card.title}</h3>
-                                    <p>{card.body}</p>
+                                    <h3>{newCard.title}</h3>
+                                    <p>{newCard.body}</p>
                                 </article>
                             </li>
-                        ))}
-                        {isCreating && newCard &&
-                        <li>
-                            <article>
-                                <h3>{newCard.title}</h3>
-                                <p>{newCard.body}</p>
-                            </article>
-                        </li>
-                        }
-                    </ul>
-                </div>
-            </section>
-            <section className="container mx-auto py-10">
-                <div className="prose prose-lg">
-                    <h2 className="mb-4">Create Card</h2>
-                    <Form ref={formRef} method="post">
-                        <p>
-                            <label>
-                                Card Title:{" "}
-                                {errors?.title ? (
-                                    <em className="text-red-600">{errors.title}</em>
-                                ) : null}
-                                <input
-                                    type="text"
-                                    name="title"
-                                    ref={titleRef}
-                                    className={inputClassName}
-                                />
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                Card Body:{" "}
-                                {errors?.body ? (
-                                    <em className="text-red-600">{errors.body}</em>
-                                ) : null}
-                                <input
-                                    type="text"
-                                    name="body"
-                                    className={inputClassName}
-                                />
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                Artificially delay form submit:{" "}
-                                <input
-                                    type="checkbox"
-                                    name="delay"
-                                    className="ml-2 rounded border-gray-300 text-indigo-600 shadow-sm
+                            }
+                        </ul>
+                    </div>
+                </section>
+                <section className="py-10 px-4 bg-blue-200">
+                    <div className="sticky top-16 prose prose-lg">
+                        <h2 className="mb-4">Create Card</h2>
+                        <Form ref={formRef} method="post">
+                            <p>
+                                <label>
+                                    Card Title:{" "}
+                                    {errors?.title ? (
+                                        <em className="text-red-600">{errors.title}</em>
+                                    ) : null}
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        ref={titleRef}
+                                        className={inputClassName}
+                                    />
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    Card Body:{" "}
+                                    {errors?.body ? (
+                                        <em className="text-red-600">{errors.body}</em>
+                                    ) : null}
+                                    <input
+                                        type="text"
+                                        name="body"
+                                        className={inputClassName}
+                                    />
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    Artificially delay form submit:{" "}
+                                    <input
+                                        type="checkbox"
+                                        name="delay"
+                                        className="ml-2 rounded border-gray-300 text-indigo-600 shadow-sm
                                     focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
-                                />
-                            </label>
-                        </p>
-                        <p className="text-right">
-                            <button
-                                type="submit"
-                                className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300"
-                                disabled={isCreating}
-                            >
-                                {isCreating ? "Creating..." : "Create Card"}
-                            </button>
-                        </p>
-                    </Form>
-                </div>
-            </section>
+                                    />
+                                </label>
+                            </p>
+                            <p className="text-right">
+                                <button
+                                    type="submit"
+                                    className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300"
+                                    disabled={isCreating}
+                                >
+                                    {isCreating ? "Creating..." : "Create Card"}
+                                </button>
+                            </p>
+                        </Form>
+                    </div>
+                </section>
+            </div>
         </main>
     );
 }
