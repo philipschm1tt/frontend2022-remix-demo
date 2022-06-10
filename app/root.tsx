@@ -1,60 +1,34 @@
 import type {MetaFunction} from "@remix-run/cloudflare";
-import {Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration,} from "@remix-run/react";
+import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration,} from "@remix-run/react";
 import styles from "./styles/tailwind.css"
+import {Navigation} from "~/components/navigation";
 
 export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Remix Demo",
-  viewport: "width=device-width,initial-scale=1",
+    charset: "utf-8",
+    title: "Remix Demo",
+    viewport: "width=device-width,initial-scale=1",
 });
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }]
+    return [{rel: "stylesheet", href: styles}]
 }
 
 export default function App() {
-  return (
-    <html lang="en">
-      <head>
-        <Meta />
-        <Links />
-      </head>
-      <body className="min-h-screen bg-blue-50">
-        <header className="sticky top-0 bg-white shadow-xl z-10">
-          <nav className="container mx-auto py-2 flex justify-between">
-            <span>
-              <Link
-                  to="/"
-                  className="text-3xl font-bold px-4 inline-block"
-              >
-                Remix Demo
-            </Link>
-            </span>
-            <ul className="flex flex-row">
-              <li className="flex flex-col justify-end">
-                <Link
-                    to="/page-one"
-                    className="px-4 uppercase tracking-wider font-bold hover:text-gray-400"
-                >
-                  Page One
-                </Link>
-              </li>
-              <li className="flex flex-col justify-end">
-                <Link
-                    to="/page-two"
-                    className="px-4 uppercase tracking-wider font-bold hover:text-gray-400"
-                >
-                  Page Two
-                </Link>
-              </li>
-            </ul>
-          </nav>
+    return (
+        <html lang="en">
+        <head>
+            <Meta/>
+            <Links/>
+        </head>
+        <body className="min-h-screen bg-blue-50">
+        <header className="sticky top-0 z-10 shadow-xl">
+            <Navigation/>
         </header>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
-    </html>
-  );
+        <Outlet/>
+        <ScrollRestoration/>
+        <Scripts/>
+        <LiveReload/>
+        </body>
+        </html>
+    );
 }

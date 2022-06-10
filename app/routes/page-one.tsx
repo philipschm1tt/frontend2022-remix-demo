@@ -3,6 +3,7 @@ import tabStyles from 'react-tabs/style/react-tabs.css';
 
 import AwesomeSlider from 'react-awesome-slider';
 import sliderStyles from 'react-awesome-slider/dist/styles.css';
+import {PageHeader} from "~/components/page-header";
 
 export function links() {
     return [{rel: "stylesheet", href: tabStyles}, {rel: "stylesheet", href: sliderStyles}];
@@ -11,16 +12,7 @@ export function links() {
 export default function PageOne() {
     return (
         <main>
-            <section className="py-20 px-4 bg-blue-900">
-                <div className="container mx-auto px-4">
-                    <h1 className="text-4xl font-bold mb-2 text-white">
-                        Page One
-                    </h1>
-                    <p className="text-2xl text-gray-200">
-                        A page that contains an interactive element
-                    </p>
-                </div>
-            </section>
+            <PageHeader headline="Page One" subHeadline="A page that contains an interactive element"/>
             <section className="container mx-auto py-10 px-4">
                 <div className="prose prose-lg">
                     <h2 className="mb-4">A basic tab component</h2>

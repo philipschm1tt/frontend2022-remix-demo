@@ -1,8 +1,8 @@
 export default function Index() {
     return (
         <main>
-            <section className="py-20 bg-blue-900">
-                <div className="container mx-auto">
+            <section className="py-20 px-4 bg-blue-900">
+                <div className="container mx-auto px-4">
                     <h1 className="text-4xl font-bold mb-2 text-white">
                         Home Page
                     </h1>
@@ -11,7 +11,7 @@ export default function Index() {
                     </p>
                 </div>
             </section>
-            <section className="container mx-auto py-10">
+            <section className="container mx-auto py-10 px-4">
                 <div className="prose prose-lg">
                     <h2>Lorem Ipsum</h2>
 

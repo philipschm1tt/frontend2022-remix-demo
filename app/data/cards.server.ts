@@ -2,21 +2,21 @@
 
 import type {AppLoadContext} from "@remix-run/cloudflare";
 
-export type Card = {
+export type CardContent = {
     title: string;
     body: string;
 };
 
 export type Counter = number;
 
-export async function getCards(context: AppLoadContext): Promise<Array<Card>> {
+export async function getCards(context: AppLoadContext): Promise<Array<CardContent>> {
     const cards = await getKv(context).get("cards", { type: "json" }) || [];
 
-    const result: Array<Card> = cards as Array<Card>;
+    const result: Array<CardContent> = cards as Array<CardContent>;
     return result;
 }
 
-export async function addCard(context: AppLoadContext, card: Card): Promise<void> {
+export async function addCard(context: AppLoadContext, card: CardContent): Promise<void> {
     const currentCards = await getCards(context);
     const newCards = currentCards.concat(card);
 
