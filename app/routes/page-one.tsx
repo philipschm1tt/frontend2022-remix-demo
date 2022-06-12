@@ -1,12 +1,12 @@
+import {PageHeader} from "~/components/page-header";
+
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import tabStyles from 'react-tabs/style/react-tabs.css';
 
-import AwesomeSlider from 'react-awesome-slider';
-import sliderStyles from 'react-awesome-slider/dist/styles.css';
-import {PageHeader} from "~/components/page-header";
+import Carousel from "nuka-carousel";
 
 export function links() {
-    return [{rel: "stylesheet", href: tabStyles}, {rel: "stylesheet", href: sliderStyles}];
+    return [{rel: "stylesheet", href: tabStyles}];
 }
 
 export default function PageOne() {
@@ -98,14 +98,14 @@ export default function PageOne() {
                         </p>
                     </div>
                     <div className="prose prose-lg py-10">
-                        <AwesomeSlider>
+                        <Carousel>
                             {
                                 [1, 2, 3, 4, 5].map((number, index) =>
                                     <div key={index} className="h-40 bg-blue-400 relative">
                                         <h3 className="my-0 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">{number}</h3>
                                     </div>)
                             }
-                        </AwesomeSlider>
+                        </Carousel>
                     </div>
                 </section>
             </div>
